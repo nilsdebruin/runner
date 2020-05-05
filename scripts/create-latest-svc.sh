@@ -25,11 +25,9 @@ set -e
 # Works on OSX and Linux
 # Assumes x64 arch
 #
-NEW_UUID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
-
 runner_scope=${1}
 ghe_hostname=${2}
-runner_name=${3:-$(hostname)-$NEW_UUID}
+runner_name=${3:-$(hostname)}
 svc_user=${4:-$USER}
 
 echo "Configuring runner @ ${runner_scope}"
@@ -132,7 +130,7 @@ fi
 echo
 echo "Configuring ${runner_name} @ $runner_url"
 echo "./config.sh --unattended --url $runner_url --token *** --name $runner_name"
-sudo -E -u ${svc_user} ./config.sh --unattended --url $runner_url --token $RUNNER_TOKEN --name $runner_name
+sudo -E -u ${svc_user} ./config.sh --unattended --url $runner_url --token $RUNNER_TOKEN --name $runner_name --replace
 
 #---------------------------------------
 # Configuring as a service
