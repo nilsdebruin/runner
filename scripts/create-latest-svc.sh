@@ -25,10 +25,11 @@ set -e
 # Works on OSX and Linux
 # Assumes x64 arch
 #
+NEW_UUID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
 
 runner_scope=${1}
 ghe_hostname=${2}
-runner_name=${3:-$(hostname)}
+runner_name=${3:-$(hostname)-$NEW_UUID}
 svc_user=${4:-$USER}
 
 echo "Configuring runner @ ${runner_scope}"
