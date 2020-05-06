@@ -130,7 +130,7 @@ fi
 echo
 echo "Configuring ${runner_name} @ $runner_url"
 echo "./config.sh --unattended --url $runner_url --token *** --name $runner_name"
-sudo -E -u ${svc_user} ./config.sh --unattended --url $runner_url --token $RUNNER_TOKEN --name $runner_name --replace
+sudo -E -u ${svc_user} ./config.sh --unattended --url $runner_url --token $RUNNER_TOKEN --name $runner_name --replace --work /opt/runner/_work
 
 #---------------------------------------
 # Configuring as a service
